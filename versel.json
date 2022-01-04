@@ -1,0 +1,6 @@
+{
+    "rewrites": [
+      { "source": "/pomodoro/:asset*", "destination": "https://domory-kidvalram.vercel.app/:asset*" },
+      { "source": "/(.*)", "destination": "/" }
+    ]
+  }
