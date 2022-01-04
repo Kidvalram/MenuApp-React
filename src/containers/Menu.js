@@ -462,7 +462,7 @@ function MenuSelector(props){
                 <motion.div layoutId="primary_background" 
                     className={classes.root_background} transition={initialTransition}/>
                     <div className={classes.main_container}>
-                        <motion.img layoutId="logo" className="logo" 
+                        <motion.img layoutId="logo" 
                         className={classes.img} src={Logo}
                         transition={loaded ? {duration: .8} : initialTransition} alt="Le Petite Gastronimique"/>
                         <AnimatePresence>

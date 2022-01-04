@@ -230,10 +230,10 @@ function Welcome(props) {
                 (
                     <motion.div initial="logo_initial" className={classes.logo_container}
                     animate="logo_animated" variants={animations} transition={logoTransition} >
-                        <div style={{height: "40%", width: "auto"}}>
-                            <motion.img layoutId="logo" height="100%" 
+                        <motion.div layoutId="logo" style={{height: "40%", width: "auto"}}>
+                            <img height="100%" 
                             width="auto" src={Logo} alt="Le Petite Gastronimique"/>
-                        </div>
+                        </motion.div>
                     </motion.div>
                )}   
             </AnimatePresence>
