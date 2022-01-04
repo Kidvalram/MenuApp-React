@@ -5,8 +5,6 @@ import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import Div100vh from 'react-div-100vh';
 import { useMediaQuery } from 'react-responsive';
 
-import Primary_Mobile_Video from '@videos/welcome_primary_mobile.mp4';
-import Secondary_Mobile_Video from '@videos/welcome_secondary_mobile.mp4';
 import SecundaryBackground from '@images/secondary_welcome_background.png';
 import PrimaryBackground from '@images/primary_welcome_background.png';
 import Logo from '@images/white_logo.png';
