@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core'
 import ReactPlayer from 'react-player'
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
@@ -15,8 +15,8 @@ import DomoryLogo from '@images/domory_logo.png';
 const IntroStyles = makeStyles(theme => ({
     root:{
         position: "fixed",
-        height: "100vh", 
-        width: "100vw",
+        height: "100%", 
+        width: "100%",
         backgroundColor: theme.colors.primary.alabaster,
         '& $video_container':{
             position: "absolute",
@@ -172,24 +172,22 @@ function Welcome(props) {
         props.onChange(value);  
     }
 
-    const onPlayVideo = (value) => {
-        if(value === "primary") screenPrimary = true;
-        if(value === "secondary") screenSecondary = true;
-
-        if(screenSecondary && screenPrimary && !screenLogo){
-            setScreenLogo(true);
+    useEffect(() => {
+        setScreenLogo(true);
             setScreenLogoDomory(true);
             sequence();
 
             setTimeout(() => {
                 handleChange(true);
-            }, 7000);
-        }
+            }, 7000); 
+        
+    }, [])
 
-    };
+    
 
     return (
-        <Div100vh className={classes.root}>
+        <Div100vh>
+            <div className={classes.root}>
             <div className={classes.video_container}>
                 <div className={classes.background}>
                     <motion.div layoutId="primary_background" initial={{opacity: 0}}
@@ -197,14 +195,7 @@ function Welcome(props) {
                     className={classes.primary_background}/>
                     <motion.div initial="primary_background_initial_video"
                         animate={animation} variants={animations} className={classes.primary_background}>
-                            <MobileOrTablet>
-                                <ReactPlayer url={Primary_Mobile_Video}  height="auto" width="120%"
-                                controls = { false } playing = { true } muted = {true} 
-                                onPlay={onPlayVideo("primary")} playsinline = {true} />
-                            </MobileOrTablet>
-                            <Desktop>
-                                <img src={PrimaryBackground} style={{height: "100%", width: "100%", objectFit:"cover"}}/>
-                            </Desktop>
+                            <img src={PrimaryBackground} style={{height: "100%", width: "100%", objectFit:"cover"}}/>
                     </motion.div>
                 </div>
                 <div className={classes.background}>
@@ -213,14 +204,7 @@ function Welcome(props) {
                     className={classes.secondary_background}/>
                     <motion.div initial="secondary_background_initial_video"
                         animate={animation} variants={animations} className={classes.secondary_background}>
-                        <MobileOrTablet>
-                            <ReactPlayer url={Secondary_Mobile_Video} height="auto" width="120%"
-                                controls = { false } playing = { true } muted = {true}
-                                onPlay={onPlayVideo("secondary")} playsinline = {true}/>
-                        </MobileOrTablet>
-                        <Desktop>
                             <img src={SecundaryBackground} style={{height: "100%", width: "100%", objectFit:"cover"}}/>
-                        </Desktop>
                     </motion.div>
                 </div>  
             </div>
@@ -244,6 +228,9 @@ function Welcome(props) {
                     animate={animation} variants={animations} transition={{delay: 1}} 
                     src={DomoryLogo} alt="Le Petite Gastronimique"/>
             </motion.div>
+
+            </div>
+            
 
         </Div100vh>
         
