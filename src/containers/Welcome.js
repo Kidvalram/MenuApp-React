@@ -15,8 +15,8 @@ import DomoryLogo from '@images/domory_logo.png';
 const IntroStyles = makeStyles(theme => ({
     root:{
         position: "fixed",
-        height: "100%", 
-        width: "100%",
+        height: "100vh", 
+        width: "100vw",
         backgroundColor: theme.colors.primary.alabaster,
         '& $video_container':{
             position: "absolute",
