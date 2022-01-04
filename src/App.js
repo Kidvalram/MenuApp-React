@@ -14,6 +14,10 @@ store.setState("loaded", false);
 store.setState("language", 2);
 store.setState("addAnimation", false)
 
+
+
+
+
 function App() {
   const [screen, setScreen] = useState(null)
   
