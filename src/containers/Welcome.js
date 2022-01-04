@@ -10,6 +10,9 @@ import PrimaryBackground from '@images/primary_welcome_background.png';
 import Logo from '@images/white_logo.png';
 import DomoryLogo from '@images/domory_logo.png';
 
+
+
+
 const IntroStyles = makeStyles(theme => ({
     root:{
         position: "fixed",
