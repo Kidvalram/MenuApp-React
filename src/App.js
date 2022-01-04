@@ -38,10 +38,10 @@ function App() {
         {screen === 1 && <Welcome onChange={handleChangeWelcome} />}
         {screen === 2 && (
           <Router>
-            <Redirect from="/menuapp" to="/menuapp/menu" default noThrow />
-            <Menu path="/menuapp/menu" />
-            <About path="/menuapp/about" />
-            <Order path="/menuapp/order"/>
+            <Redirect from="/" to="/menu" default noThrow />
+            <Menu path="/menu" />
+            <About path="/about" />
+            <Order path="/order"/>
           </Router>
         )}
       </AnimateSharedLayout>
