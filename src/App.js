@@ -11,7 +11,7 @@ import Welcome from "./containers/Welcome"
 import Order from "./containers/Order"
 
 store.setState("loaded", false);
-store.setState("language", 0);
+store.setState("language", 2);
 store.setState("addAnimation", false)
 
 function App() {
