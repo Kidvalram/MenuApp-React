@@ -10,6 +10,7 @@ import Secondary_Mobile_Video from '@videos/welcome_secondary_mobile.mp4';
 import SecundaryBackground from '@images/secondary_welcome_background.png';
 import PrimaryBackground from '@images/primary_welcome_background.png';
 import Logo from '@images/white_logo.png';
+import DomoryLogo from '@images/domory_logo.png';
 
 const IntroStyles = makeStyles(theme => ({
     root:{
@@ -34,6 +35,32 @@ const IntroStyles = makeStyles(theme => ({
             alignItems: "center",
             height: "100%",
             width: "100%",
+        },
+        '& $domory_logo_container': {
+            position: "absolute",
+            display: "flex",
+            justifyContent: "center",
+            alignContent: "flex-end",
+            alignItems: "flex-end",
+            height: "100%",
+            width: "100%",
+            '& $img':{
+                [theme.breakpoints.down('lg')]: {
+                    height: "auto",
+                    width: "30%",
+                    paddingBottom: "5vw",
+                },
+                [theme.breakpoints.down('sm')]: {
+                    height: "auto",
+                    width: "40%",
+                    paddingBottom: "5vw",
+                },
+                [theme.breakpoints.up('lg')]: {
+                    height: "10%",
+                    width: "auto",
+                    paddingBottom: "5vh",
+                },
+            },
         },
         '& $background': {
             width: "100%", 
@@ -71,14 +98,16 @@ const IntroStyles = makeStyles(theme => ({
     primary_background: {},
     secondary_background: {},
     logo_container: {},
+    domory_logo_container: {},
+    img: {},
 }));
 
 const animations = {
     primary_background_initial_video:{
-        y: "-140%"    
+        y: "-180%"    
     },
     secondary_background_initial_video:{
-        y: "140%",
+        y: "180%",
     },
     background_animated_video:{
         y: "0%"    
@@ -114,6 +143,7 @@ function Welcome(props) {
     let screenPrimary = false;
     
     const [screenLogo, setScreenLogo] = useState(false)
+    const [screenLogoDomory, setScreenLogoDomory] = useState(true)
     
     const MobileOrTablet = ({ children }) => {
         const isMobileOrTablet = useMediaQuery({ maxWidth: 991 })
@@ -148,10 +178,10 @@ function Welcome(props) {
 
         if(screenSecondary && screenPrimary && !screenLogo){
             setScreenLogo(true);
+            setScreenLogoDomory(true);
             sequence();
 
             setTimeout(() => {
-
                 handleChange(true);
             }, 7000);
         }
@@ -207,6 +237,13 @@ function Welcome(props) {
                     </motion.div>
                )}   
             </AnimatePresence>
+
+            <motion.div className={classes.domory_logo_container} initial={{opacity: 0}}
+                animate={{opacity: screenLogo ? 1 : 0}} transition={{duration: 2}} >
+                    <motion.img  className={classes.img} initial={{opacity: 1}} 
+                    animate={animation} variants={animations} transition={{delay: 1}} 
+                    src={DomoryLogo} alt="Le Petite Gastronimique"/>
+            </motion.div>
 
         </Div100vh>
         
