@@ -25,7 +25,7 @@ const styles = makeStyles(theme => ({
             background: "rgba(0, 0, 0, 0.7)",
             backdropFilter: "blur(2px)",
             [theme.breakpoints.up('lg')]: {
-                width: "80%",
+                width: "75%",
                 right: 0,
             },
         },
@@ -34,7 +34,7 @@ const styles = makeStyles(theme => ({
             height: "100%",
             width: "100%",
             [theme.breakpoints.up('lg')]: {
-                width: "80%",
+                width: "75%",
                 right: 0,
             },
             '& $card':{
@@ -61,17 +61,22 @@ const styles = makeStyles(theme => ({
                     width: "90%",
                     display: "flex",
                     flexDirection: "column",
-                    justifyContent: "flex-start",
+                    justifyContent: "space-start",
                     alignItems: "center",
                     alignContent: "center",
-                    gap: "3vh",
                     '& $logo':{
                         position: "relative",
                         height: "auto",
                         width: "80%",
-                        paddingTop: "5vh",
+                        [theme.breakpoints.down('lg')]: {
+                            paddingTop: "3vw"
+                        },
+                        [theme.breakpoints.down('sm')]: {
+                            paddingTop: "5vw"
+                        },
                         [theme.breakpoints.up('lg')]: {
                             width: "50%",
+                            paddingTop: "3vh"
                         },
                         '& $img':{
                             height: "auto",
@@ -87,6 +92,15 @@ const styles = makeStyles(theme => ({
                         alignItems: "center",
                         alignContent: "center",
                         textAlign: "center",
+                        [theme.breakpoints.down('lg')]: {
+                            paddingTop: "6vw"
+                        },
+                        [theme.breakpoints.down('sm')]: {
+                            paddingTop: "5vw"
+                        },
+                        [theme.breakpoints.up('lg')]: {
+                            paddingTop: "3vh"
+                        },
                         '& $span':{
                             position: "relative",
                             paddingLeft: "10vw",
@@ -121,19 +135,31 @@ const styles = makeStyles(theme => ({
                         alignItems: "center",
                         alignContent: "center",
                         flexDirection: "column",
+                        [theme.breakpoints.down('lg')]: {
+                            paddingTop: "8vw"
+                        },
+                        [theme.breakpoints.down('sm')]: {
+                            paddingTop: "5vw"
+                        },
+                        [theme.breakpoints.up('lg')]: {
+                            paddingTop: "3vh"
+                        },
                         '& $icon': {
                             position: "absolute",
-                            top: 0,
                             height: "auto",
                             objectFit: "cover",
                             [theme.breakpoints.down('lg')]: {
                                 width: "55%",
+                                top: 35,
                             },
                             [theme.breakpoints.down('sm')]: {
                                 width: "65%",
+                                top: 30,
+
                             },
                             [theme.breakpoints.up('lg')]: {
                                 width: "45%",
+                                top: 30,
                             },
                         },
                         '& $product':{
@@ -158,8 +184,8 @@ const styles = makeStyles(theme => ({
                                 boxFlex: 9.0,
                                 '& $line': {
                                     borderBottom: "2px dotted #161C26",
-                                    marginLeft: "10px",
-                                    marginRight: "10px",
+                                    marginLeft: "5px",
+                                    marginRight: "5px",
                                     height: "1.5vh",
                                     margin: "0 1px 0 1px",
                                 },
@@ -307,7 +333,7 @@ function CardOrder(props) {
         props.onChange(value);
     }
 
-    const truncate = (input) => input.length > 30 ? `${input.substring(0, 30)}...` : input;
+    const truncate = (input) => input.length > 25 ? `${input.substring(0, 25)}...` : input;
 
     return (
         <div className={classes.root}>

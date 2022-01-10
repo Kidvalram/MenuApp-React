@@ -55,7 +55,7 @@ const styles = makeStyles(theme => ({
             width: "100%",    
         },
         [theme.breakpoints.up('lg')]: {
-            width: "80%",
+            width: "75%",
         },
         '& $root_background': {
             position: "relative",
@@ -81,95 +81,86 @@ const styles = makeStyles(theme => ({
             position: "absolute",
             display: "flex",
             flexDirection: "column",
-            justifyContent: "flex-start",
+            justifyContent: "space-between",
             alignContent: "center",
             alignItems: "center",
             height: "100%",
             width: "100%",
-            marginTop: "10%",
-            gap: "5%",
             [theme.breakpoints.up('lg')]: {
                 fontSize: "5vw",
                 paddingLeft: "4vw",
                 paddingRight: "4vw",
-                marginTop: "5%",
             },
             '& $text_title': {
                 color: theme.colors.secondary.cultured, 
                 fontFamily: "Lora",
                 fontWeight: "bold",
                 textAlign: "center",
+                [theme.breakpoints.down('lg')]: {
+                    fontSize: "5vw",
+                    paddingLeft: "4vw",
+                    paddingRight: "4vw",
+                },
                 [theme.breakpoints.down('sm')]: {
                     fontSize: "6vw",
                     paddingLeft: "8vw",
                     paddingRight: "8vw",
-                },
-                [theme.breakpoints.up('sm')]: {
-                    fontSize: "5vw",
-                    paddingLeft: "4vw",
-                    paddingRight: "4vw",
                 },
                 [theme.breakpoints.up('lg')]: {
                     fontSize: "4vh",
                 },
             },
             "& $img": {
-                [theme.breakpoints.down('sm')]: {
-                    height: "auto",
-                    width:"35%"    
+                position: "relative",
+                [theme.breakpoints.down('lg')]: {
+                    marginTop: "7%",
+                    height: "30%",
+                    width:"auto"                 
                 },
-                [theme.breakpoints.up('sm')]: {
-                    height: "auto",
-                    width:"28%"    
+                [theme.breakpoints.down('sm')]: {
+                    marginTop: "10%",
+                    height: "25%",
+                    width:"auto"  
                 },
                 [theme.breakpoints.up('lg')]: {
+                    marginTop: "5%",
                     width:"auto",
-                    height: "30%"    
+                    height: "30%"
                 },
-                
-            }
-        },
-        '& $carousel_container':{
-            position:"absolute", 
-            display: "flex",
-            justifyContent: "center",
-            alignContent: "center",
-            alignItems: "center",
-            height: "auto",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            [theme.breakpoints.down('sm')]: {
-                width: "120vw", 
-                bottom: "28%",
             },
-            [theme.breakpoints.up('sm')]: {
-                width: "85vw", 
-                bottom: "28%",
+            '& $carousel_container':{
+                position:"relative",
+                [theme.breakpoints.down('lg')]: {
+                    height: "40%",
+                    width: "90vw",  
+                    paddingBottom: "10%"
+                },
+                [theme.breakpoints.down('sm')]: {
+                    width: "120vw", 
+                    height: "45%",
+                    paddingBottom: "5%",
+                },
+                [theme.breakpoints.up('lg')]: {
+                    width: "38vw",
+                    height: "40%",
+                    paddingBottom: "3%",
+                    paddingLeft: "5%",
+                    paddingRight: "5%"
+                },
             },
-            [theme.breakpoints.up('lg')]: {
-                width: "35vw", 
-                bottom: "28%",
-            },
-        },
-
-        '& $card_button': {
-            position:"absolute", 
-            width: "55%", 
-            height: "45%",
-            top: "72%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
         },
         '& $card_container': {
-            width: "auto",
-            [theme.breakpoints.down('sm')]: {
-                height: "40vh",
+            position: "relative",
+            height: "96%",
+            [theme.breakpoints.down('lg')]: {
+                width: "30vw",
+
             },
-            [theme.breakpoints.up('sm')]: {
-                height: "44vh",
+            [theme.breakpoints.down('sm')]: {
+                width: "45vw",
             },
             [theme.breakpoints.up('lg')]: {
-                height: "40vh",
+                width: "25vh",
             },
         },
         '& $cart_button':{
@@ -196,7 +187,6 @@ const styles = makeStyles(theme => ({
     },
     main_container:{},
     carousel_container:{},
-    card_button:{},
     language_button:{},
     menu_button:{},
     text_title:{},
@@ -296,7 +286,7 @@ function MenuSelector(props){
                     (<motion.div className={classes.card_container} variants={animations}
                     initial={isDesktop ? "down_initial_component" : state.centerCard} exit={isDesktop ? "down_initial_component" : state.centerCard}
                     animate="animated_component"  transition={loaded ? {duration: .8} : buttonTransition}>
-                        <CardCategory height="45vh" width="auto" photo={BreakfastMenu} text={TitleCategory[language].breakfast} />
+                        <CardCategory photo={BreakfastMenu} text={TitleCategory[language].breakfast} />
                     </motion.div>)
                 }
             </AnimatePresence>
@@ -310,7 +300,7 @@ function MenuSelector(props){
                     (<motion.div className={classes.card_container} variants={animations}
                     initial={isDesktop ? "down_initial_component" : state.leftCard} exit={isDesktop ? "down_initial_component" : state.leftCard}
                     animate="animated_component" transition={loaded ? {duration: .8} : buttonTransition}>
-                        <CardCategory height="45vh" width="auto" photo={LunchMenu} text={TitleCategory[language].lunch} />
+                        <CardCategory photo={LunchMenu} text={TitleCategory[language].lunch} />
                     </motion.div>)
                 }
             </AnimatePresence>
@@ -323,7 +313,7 @@ function MenuSelector(props){
                     (<motion.div className={classes.card_container} variants={animations}
                         initial={isDesktop ? "down_initial_component" : state.rightCard} exit={isDesktop ? "down_initial_component" : state.rightCard}
                         animate="animated_component" transition={loaded ? {duration: .8} : buttonTransition}>
-                            <CardCategory height="45vh" width="auto" photo={DinnerMenu} text={TitleCategory[language].dinner} />
+                            <CardCategory photo={DinnerMenu} text={TitleCategory[language].dinner} />
                     </motion.div>)
                 }
             </AnimatePresence>
@@ -456,7 +446,7 @@ function MenuSelector(props){
     });
     
     
-    
+
     return (
         <Div100vh className={classes.root}>
             <div className={classes.container}>
@@ -479,6 +469,16 @@ function MenuSelector(props){
                                 </motion.div>)
                             }
                         </AnimatePresence>
+                        <div {...handlers} className={classes.carousel_container}>
+
+                            <Carousel
+                            slides={slides}
+                            goToSlide={state.goToSlide}
+                            offsetRadius={state.offsetRadius}
+                            showNavigation={state.showNavigation}
+                            animationConfig={state.config}/>
+
+                        </div>
                     </div>
                     <motion.div className={classes.language_button} variants={animations}  
                     initial={loaded ? "" : "right_initial_component"} animate={"animated_component"}
@@ -504,25 +504,17 @@ function MenuSelector(props){
                     <motion.div layoutId="cart_button" className={classes.cart_button} transition={{duration: .8}}>
                         <IconButton items={products.length} icon={CartIcon}/>
                     </motion.div>
-                <div {...handlers} className={classes.carousel_container}>
-
-                    <Carousel
-                        slides={slides}
-                        goToSlide={state.goToSlide}
-                        offsetRadius={state.offsetRadius}
-                        showNavigation={state.showNavigation}
-                        animationConfig={state.config}/>
-
-                </div>
+               
                 <motion.div className={classes.menu_layout}>
                     <CardMenu onChange={handleChange} items={[]} open={false} language={language} level="4" category={props.title} title={TitleMenuCategory[language].entree}/>
                     <CardMenu onChange={handleChange} items={[]} open={false} language={language} level="3" category={props.title} title={TitleMenuCategory[language].main}/>
                     <CardMenu onChange={handleChange} items={[]} open={false} language={language} level="2" category={props.title} title={TitleMenuCategory[language].dessert}/>
                     <CardMenu onChange={handleChange} items={[]} open={false} language={language} level="1" category={props.title} title={TitleMenuCategory[language].drinks}/>
                 </motion.div>
-                <Tab isVisible={isDesktop ? true : visibleTab} static={loaded ? true : false} onChange={handleChange}/>   
 
             </div>
+            <Tab isVisible={isDesktop ? true : visibleTab} static={loaded ? true : false} onChange={handleChange}/>   
+
 
         </Div100vh>
         

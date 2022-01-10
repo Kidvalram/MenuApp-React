@@ -24,7 +24,7 @@ const styles = makeStyles(theme => ({
         top: 0,
         [theme.breakpoints.up('lg')]: {
             right: 0,
-            width: "80%", 
+            width: "75%", 
         },
         '& $shadow_background': {
             position: "fixed",
@@ -33,7 +33,7 @@ const styles = makeStyles(theme => ({
             background: "rgba(0, 0, 0, 0.7)",
             backdropFilter: "blur(2px)",
             [theme.breakpoints.up('lg')]: {
-                width: "80%",
+                width: "75%",
             },
         },
         '& $container': {
@@ -41,7 +41,7 @@ const styles = makeStyles(theme => ({
             height: "100%",
             width: "100%",
             [theme.breakpoints.up('lg')]: {
-                width: "80%",
+                width: "75%",
             },
             '& $card':{
                 position: "relative",
@@ -58,7 +58,7 @@ const styles = makeStyles(theme => ({
                 background: theme.colors.primary.rich_black,
                 [theme.breakpoints.down('lg')]: {
                     height: "90%",
-                    width: "80%",
+                    width: "75%",
                 },
                 [theme.breakpoints.down('sm')]: {
                     height: "90%",
@@ -183,17 +183,16 @@ const styles = makeStyles(theme => ({
                         alignItems: "center",
                         textAlign: "center",
                         [theme.breakpoints.down('lg')]: {
-                            gap: "10vw !important",
+                            width: "35vw",
                         },
                         [theme.breakpoints.down('sm')]: {
-                            gap: "10vw !important",
+                            width: "40vw",
                         },
                         [theme.breakpoints.up('lg')]: {
-                            gap: "7vh !important",
+                            width: "25vh",
                         },
                         '& $text_counter': {
                             position: "absolute",
-                            
                             [theme.breakpoints.down('lg')]: {
                                 fontSize: "9.5vw",
                             },
@@ -203,7 +202,8 @@ const styles = makeStyles(theme => ({
                             },
                             [theme.breakpoints.up('lg')]: {
                                 fontSize: "6vh",
-                                paddingTop: "1vh",                            },
+                                paddingTop: "1vh",                            
+                            },
                         },
                     },
                     '& $add_button': {

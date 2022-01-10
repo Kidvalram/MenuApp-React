@@ -34,7 +34,7 @@ const CardCategoryStyle = makeStyles(theme => ({
             fontSize: "3.5vw",
         },
         [theme.breakpoints.up('lg')]: {
-            fontSize: "2.3vh",
+            fontSize: "2.1vh",
         },
     }
 }));
@@ -45,7 +45,7 @@ function CardCategory({photo, text}) {
 
     return (
         <div className={classes.root}>
-            <img style={{borderRadius: "20px" ,objectFit: "cover"}}  alt="" src={photo}/>
+            <img style={{borderRadius: "20px" ,objectFit: "cover", width: "inherit", height: "inherit"}}  alt="" src={photo}/>
             <div className={classes.title_section}>
                 <motion.span key={text} initial={{opacity:0}} exit={{opacity:0}}
                 animate={{opacity:1}} transition={{duration: 1.6}}>{text}</motion.span>  

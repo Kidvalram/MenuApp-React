@@ -40,15 +40,15 @@ const styles = makeStyles(theme => ({
             width: "100%",  
         },
         [theme.breakpoints.up('lg')]: {
-            width: "80%", 
-            paddingLeft: "20%" 
+            width: "75%",
+            paddingLeft: "25%" 
         },
         '& $background': {
             position: "absolute",
             height: "100%",
             width: "100%",
             [theme.breakpoints.up('lg')]: {
-                width: "80%",  
+                width: "75%",
             },
         },
         '& $menu_container':{
@@ -62,7 +62,7 @@ const styles = makeStyles(theme => ({
             alignItems: "center",
             alignContent: "center",
             [theme.breakpoints.up('lg')]: {
-                width: "80%",  
+                width: "75%",
             },
             '& $logo_section': {
                 position: "relative",
@@ -73,10 +73,33 @@ const styles = makeStyles(theme => ({
                 alignContent: "center",
                 textAlign: "center",
                 width: "100%",
-                height: "45vh",
                 opacity: 0.7,
+                [theme.breakpoints.down('lg')]: {
+                    height: "35vh",
+                },
+                [theme.breakpoints.down('sm')]: {
+                    height: "35vh",
+                    paddingBottom: "5vw",
+                },
                 [theme.breakpoints.up('lg')]: {
-                    bottom: "-25vh",
+                    bottom: "-27vh",
+                    height: "45vh",
+                },
+                "& $logo": {
+                    position: "absolute",
+                    width:"auto",
+                    [theme.breakpoints.down('lg')]: {
+                        height:"100%",
+                        paddingBottom: "10vw",
+                    },
+                    [theme.breakpoints.down('sm')]: {
+                        height:"90%",
+                        paddingBottom: "5vw",
+                    },
+                    [theme.breakpoints.up('lg')]: {
+                        height:"100%",
+                        paddingBottom: "5vh",
+                    },
                 },
                 '& $text_title': {
                     position: "relative",
@@ -86,14 +109,13 @@ const styles = makeStyles(theme => ({
                     fontWeight: "bold",
                     paddingBottom: "5vh",
                     [theme.breakpoints.down('lg')]: {
-                        fontSize: "8vw",
+                        fontSize: "6vw",
                     },
                     [theme.breakpoints.down('sm')]: {
-                        fontSize: "9vw",
+                        fontSize: "7vw",
                     },
                     [theme.breakpoints.up('lg')]: {
-                        paddingBottom: "1vh",
-                        fontSize: "7vh",
+                        fontSize: "6vh",
                     },
                 },
             },
@@ -123,7 +145,7 @@ const styles = makeStyles(theme => ({
             [theme.breakpoints.up('lg')]: {
                 top: "3vh",
                 left: "3vh",
-                paddingLeft: "20%"
+                paddingLeft: "25%"
             },
         },
         '& $categories_section': {
@@ -229,6 +251,8 @@ function DefaultCategory(props) {
     const classes = styles();
     const [visibleComponent, setVisibleComponent] = useState(true);
     const [language, setLanguage] = useGlobalState("language");
+    const [visibleTab, setVisibleTab] = useState(false);
+    const [loaded, setLoaded] = useGlobalState("loaded");
     const navigate = useNavigate();
     var products = JSON.parse(sessionStorage.getItem('Products'));
 
@@ -250,17 +274,18 @@ function DefaultCategory(props) {
     // const [loaded, setloaded] = useGlobalState("loaded");
 
     function handleChange(value) {
-        loaded = true;
+        setLoaded(true);
         props.onChange(value);
     }
 
     function handleBack(event,value){
         event.persist();
-        loaded = false;
+        setLoaded(true);
         props.onChange(value);
     }
 
     function handleLanguage(){
+        setLoaded(true);
         if(language === 2){
             setLanguage(0);
         }else{
@@ -290,7 +315,7 @@ function DefaultCategory(props) {
                 variants={animations}  transition={initialTransition}/>   
                 <div className={classes.menu_container}>
                     <div className={classes.logo_section}>
-                        <motion.img layoutId="logo" src={Logo} width="auto" height="100%" style={{position: "absolute"}}
+                        <motion.img layoutId="logo" src={Logo} className={classes.logo}
                         transition={initialTransition} alt="Le Petite Gastronimique"/>
                         <AnimatePresence>
                             {visibleComponent && 
@@ -331,7 +356,7 @@ function DefaultCategory(props) {
                 </motion.div>
                 
                 <Desktop>
-                <Tab isVisible={true} static={true} onChange={handleChange}/>
+                <Tab isVisible={isDesktop ? true : visibleTab} static={loaded ? true : false} onChange={handleChange}/>   
             </Desktop> 
             </div>
 
@@ -366,8 +391,8 @@ function EntreeCategory(props) {
                 </motion.div>
                 <div className={classes.menu_container}>
                     <div className={classes.logo_section}>
-                        <motion.img layoutId="logo" src={Logo} width="auto" height="100%" 
-                        style={{position: "absolute"}} alt="Le Petite Gastronimique"/>
+                        <motion.img layoutId="logo" src={Logo} className={classes.logo} 
+                        alt="Le Petite Gastronimique"/>
                         <span className={classes.text_title}>
                             {props.title}
                         </span>
@@ -381,7 +406,7 @@ function EntreeCategory(props) {
                     <DarkIconButton items={products.length} icon={CartIcon}
                     onClick={(e) => handleBack(e,"order")}/>
                 </motion.div>  
-                <CardMenu onChange={handleChange} padding={isMobileOrTablet ? "54vw" : "30vh"} items={BreakfastEntree} level="4" open={true} language={language} category={props.title} title={TitleMenuCategory[language].entree}/>
+                <CardMenu onChange={handleChange} padding={isMobileOrTablet ? "54vw" : "25vh"} items={BreakfastEntree} level="4" open={true} language={language} category={props.title} title={TitleMenuCategory[language].entree}/>
                 <div className={classes.menu_container}>
                     <CardMenu onChange={handleChange} padding="4vw" items={BreakfastMain} language={language} level="3" open={false} category={props.title} title={TitleMenuCategory[language].main}/>
                     <CardMenu onChange={handleChange} padding="4vw" items={BreakfastDessert} language={language} level="2" open={false} category={props.title} title={TitleMenuCategory[language].dessert}/>
@@ -423,8 +448,8 @@ function MainCategory(props) {
                 </motion.div>
                 <div className={classes.menu_container}>
                     <div className={classes.logo_section}>
-                        <motion.img layoutId="logo" src={Logo} width="auto" height="100%" 
-                        style={{position: "absolute"}} alt="Le Petite Gastronimique"/>
+                        <motion.img layoutId="logo" src={Logo} className={classes.logo} 
+                        alt="Le Petite Gastronimique"/>
                         <span className={classes.text_title}>
                             {props.title}
                         </span>
@@ -442,7 +467,7 @@ function MainCategory(props) {
                     <CardMenu onChange={handleChange} padding="4vw" items={BreakfastEntree} language={language} open={false} level="4" category={props.title} title={TitleMenuCategory[language].entree}/>
                     <div className={classes.three_menu}/>
                 </div>
-                <CardMenu onChange={handleChange} padding={isMobileOrTablet ? "36vw" : "20vh"} items={BreakfastMain} language={language} open={true} level="3" category={props.title} title={TitleMenuCategory[language].main}/>
+                <CardMenu onChange={handleChange} padding={isMobileOrTablet ? "36vw" : "15vh"} items={BreakfastMain} language={language} open={true} level="3" category={props.title} title={TitleMenuCategory[language].main}/>
                 <div className={classes.menu_container}>
                     <CardMenu onChange={handleChange} padding="4vw" items={BreakfastDessert} language={language} open={false} level="2" category={props.title} title={TitleMenuCategory[language].dessert}/>
                     <CardMenu onChange={handleChange} padding="4vw" items={BreakfastDrinks} language={language} open={false} level="1" category={props.title} title={TitleMenuCategory[language].drinks}/>
@@ -482,8 +507,8 @@ function DessertCategory(props) {
             </motion.div>
             <div className={classes.menu_container}>
                 <div className={classes.logo_section}>
-                    <motion.img layoutId="logo" src={Logo} width="auto" height="100%" 
-                    style={{position: "absolute"}} alt="Le Petite Gastronimique"/>
+                    <motion.img layoutId="logo" src={Logo} className={classes.logo}
+                    alt="Le Petite Gastronimique"/>
                     <span className={classes.text_title}>
                         {props.title}
                     </span>
@@ -502,7 +527,7 @@ function DessertCategory(props) {
                 <CardMenu onChange={handleChange} padding="4vw" items={BreakfastMain} open={false} language={language} level="3" category={props.title} title={TitleMenuCategory[language].main}/>
                 <div className={classes.two_menu}/>
             </div>
-            <CardMenu onChange={handleChange} padding={isMobileOrTablet ? "18vw" : "18vh"} items={BreakfastDessert} open={true} language={language} level="2" category={props.title} title={TitleMenuCategory[language].dessert}/>
+            <CardMenu onChange={handleChange} padding={isMobileOrTablet ? "18vw" : "12vh"} items={BreakfastDessert} open={true} language={language} level="2" category={props.title} title={TitleMenuCategory[language].dessert}/>
             <div className={classes.menu_container}>
                 <CardMenu onChange={handleChange} padding="4vw" items={BreakfastDrinks} open={false} language={language} level="1" category={props.title} title={TitleMenuCategory[language].drinks}/>
             </div>
@@ -539,8 +564,8 @@ function DrinksCategory(props) {
             </motion.div>
             <div className={classes.menu_container}>
                 <div className={classes.logo_section}>
-                    <motion.img layoutId="logo" src={Logo} width="auto" height="100%" 
-                    style={{position: "absolute"}} alt="Le Petite Gastronimique"/>
+                    <motion.img layoutId="logo" src={Logo} className={classes.logo}
+                    alt="Le Petite Gastronimique"/>
                     <span className={classes.text_title}>
                         {props.title}
                     </span>

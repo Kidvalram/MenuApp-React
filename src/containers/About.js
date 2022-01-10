@@ -48,7 +48,7 @@ const styles = makeStyles(theme => ({
             width: "100%", 
         },
         [theme.breakpoints.up('lg')]: {
-            width: "80%",
+            width: "75%",
         },
         '& $video_container': {
             position: "absolute", 
@@ -99,20 +99,25 @@ const styles = makeStyles(theme => ({
             position: "absolute",
             display: "flex",
             flexDirection: "column",
-            justifyContent: "center",
+            justifyContent: "space-evenly",
             alignItems: "center",
             alignContent: "center",
-            height: "100%",
+            height: "90%",
             width: "100%",
-            gap: "2vh",
+            [theme.breakpoints.down('lg')]: {
+                paddingTop: "10%",
+            },
+            [theme.breakpoints.up('lg')]: {
+                paddingTop: "5%", 
+            }, 
             '& $img': {
                 [theme.breakpoints.down('lg')]: {
                     width:"28%", 
                     height:"auto"  
                 },
                 [theme.breakpoints.down('sm')]: {
-                    width:"35%", 
-                    height:"auto" 
+                    width:"auto", 
+                    height:"30%" 
                 },
                 [theme.breakpoints.up('lg')]: {
                     width:"auto", 
@@ -131,7 +136,7 @@ const styles = makeStyles(theme => ({
                     fontSize: "4.2vw", 
                 },
                 [theme.breakpoints.down('sm')]: {
-                    fontSize: "5vw",
+                    fontSize: "4.5vw",
                 },
                 [theme.breakpoints.up('lg')]: {
                     fontSize: "3.2vh",
@@ -149,7 +154,7 @@ const styles = makeStyles(theme => ({
                     fontSize: "3.2vw",
                 },
                 [theme.breakpoints.down('sm')]: {
-                    fontSize: "4vw",
+                    fontSize: "3.7vw",
                 },
                 [theme.breakpoints.up('lg')]: {
                     fontSize: "2.5vh",
@@ -162,8 +167,8 @@ const styles = makeStyles(theme => ({
                     width: "55vw", 
                 },
                 [theme.breakpoints.down('sm')]: {
-                    height: "75vw",
-                    width: "75vw",
+                    height: "35vh",
+                    width: "35vh",
                 },
                 [theme.breakpoints.up('lg')]: {
                     height: "37vh",
@@ -238,7 +243,7 @@ function About() {
     const [visibleTab, setVisibleTab] = useState(false);
     const [changeText, setChangeText] = useState(true);
     const [visibleComponent, setVisibleComponent] = useState(true);
-    const [loaded, setloaded] = useGlobalState("loaded");
+    const [loaded, setLoaded] = useGlobalState("loaded");
     const [language, setLanguage] = useGlobalState("language");
 
     const isDesktop = useMediaQuery({ minWidth: 992 })
@@ -270,6 +275,7 @@ function About() {
 
     function changeLanguage(){
         setChangeText(false);
+        setLoaded(true);
         if(language === 2){
             setLanguage(0);
         }else{
@@ -279,10 +285,11 @@ function About() {
 
     function handleChange(value) {
         setVisibleTab(false);
+        setLoaded(true);
         if(value !== "background" && value !== "about"){
             setVisibleComponent(false)
             setChangeText(false);
-            setloaded(true);
+            setLoaded(true);
             setTimeout(() => {
                 navigate('../' + value, { replace: true });
             }, 1650);

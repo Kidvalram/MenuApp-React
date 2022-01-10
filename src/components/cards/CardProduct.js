@@ -13,8 +13,15 @@ const styles = makeStyles(theme => ({
         justifyContent: "space-between",
         alignItems: "center",
         alignContent: "center",
+        [theme.breakpoints.down('lg')]: {
+            paddingBottom: "6vw",
+        },
+        [theme.breakpoints.down('sm')]: {
+            paddingBottom: "7vw",
+        },
         [theme.breakpoints.up('lg')]: {
             width: "42.5%",
+            paddingBottom: "7vh",
         },
         '& $info': {
             position: "relative",
@@ -25,7 +32,6 @@ const styles = makeStyles(theme => ({
             alignContent: "center",
             width: "60%",
             height: "100%",
-            gap: ".5vh",
             '& $title': { 
                 color: theme.colors.secondary.cultured, 
                 fontFamily: "WorkSans",

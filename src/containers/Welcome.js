@@ -14,8 +14,8 @@ import DomoryLogo from '@images/domory_logo.png';
 const IntroStyles = makeStyles(theme => ({
     root:{
         position: "fixed",
-        height: "100vh", 
-        width: "100vw",
+        height: "100%", 
+        width: "100%",
         backgroundColor: theme.colors.primary.alabaster,
         '& $video_container':{
             position: "absolute",
@@ -46,16 +46,16 @@ const IntroStyles = makeStyles(theme => ({
             '& $img':{
                 [theme.breakpoints.down('lg')]: {
                     height: "auto",
-                    width: "30%",
+                    width: "25%",
                     paddingBottom: "5vw",
                 },
                 [theme.breakpoints.down('sm')]: {
                     height: "auto",
-                    width: "40%",
+                    width: "30%",
                     paddingBottom: "5vw",
                 },
                 [theme.breakpoints.up('lg')]: {
-                    height: "10%",
+                    height: "6%",
                     width: "auto",
                     paddingBottom: "5vh",
                 },

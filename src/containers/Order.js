@@ -44,11 +44,10 @@ const styles = makeStyles(theme => ({
         position: "relative",
         height: "100%",
         width: "100%",
-        
         backgroundColor: theme.colors.secondary.smoky_black,
     },
     container:{
-        position: "relative",
+        position: "absolute",
         display: "flex",
         backgroundColor: theme.colors.secondary.smoky_black,
         flexDirection: "column",
@@ -64,7 +63,7 @@ const styles = makeStyles(theme => ({
             right: 0,
             background: theme.colors.primary.rich_black,
             [theme.breakpoints.up('lg')]: {
-                width: "80%",
+                width: "75%",
             },
         },
         '& $products_container':{
@@ -73,32 +72,25 @@ const styles = makeStyles(theme => ({
             width: "100%",
             bottom: 0,
             [theme.breakpoints.up('lg')]: {
-                width: "80%",
+                width: "75%",
             },
             '& $products': {
                 position: "sticky", 
                 height: "auto",
                 width: "100%",
                 paddingTop: "15%",
-                paddingBottom: "25%",
+                paddingBottom: "20%",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
                 alignContent: "center",
                 alignItems: "center",
-                [theme.breakpoints.down('lg')]: {
-                    gap: "4vh",
-                },
-                [theme.breakpoints.down('sm')]: {
-                    gap: "1vh",
-                },
                 [theme.breakpoints.up('lg')]: {
-                    gap: "9vh",
                     flexWrap: "wrap",
                     flexDirection: "row",
-                    justifyContent: "center",
+                    justifyContent: "space-evenly",
                     paddingTop: "8%",
-                    paddingBottom: "15%",
+                    paddingBottom: "8%",
                 }, 
             }
         },
@@ -108,7 +100,7 @@ const styles = makeStyles(theme => ({
             width: "100%",
             right: 0,
             [theme.breakpoints.up('lg')]: {
-                width: "80%",
+                width: "75%",
             },
             '& $img': {
                 height: "100%",
@@ -154,7 +146,7 @@ const styles = makeStyles(theme => ({
             alignContent: "center",
             alignItems: "center",
             [theme.breakpoints.up('lg')]: {
-                width: "80%",
+                width: "75%",
             }, 
             '& $animation':{
                 position: "relative",
@@ -191,7 +183,7 @@ const styles = makeStyles(theme => ({
             alignItems: "center",
             [theme.breakpoints.up('lg')]: {
                 top: "-100%",
-                width: "80%",
+                width: "75%",
             },
         },
         '& $order_button_container':{
@@ -204,33 +196,34 @@ const styles = makeStyles(theme => ({
             borderRadius: "20px 20px 0px 0px",
             boxShadow: " 0px -3px 3px #000",
             [theme.breakpoints.up('lg')]: {
-                width: "80%",
+                width: "75%",
             },
         },
-        '& $menu_button':{
-            position: "fixed",
-            top: "3vw",
-            left: "3vw",
-        },
-        '& $language_button':{
-            position: "fixed",
-            top: "3vw",
-            right: "3vw",
-            [theme.breakpoints.up('lg')]: {
-                top: "3vh",
-                right: "3vh",
-            },
-        },
+        
         '& $menu_layout':{
             position: "fixed",
             bottom: "-60vh",
         },
 
     },
+    menu_button:{
+        position: "fixed",
+        overflow: "hidden",
+        top: "3vw",
+        left: "3vw",
+    },
+    language_button:{
+        position: "fixed",
+        overflow: "hidden",
+        top: "3vw",
+        right: "3vw",
+        [theme.breakpoints.up('lg')]: {
+            top: "3vh",
+            right: "3vh",
+        },
+    },
     root_container:{},
     background: {},
-    menu_button:{},
-    language_button:{},
     image_container:{},
     products_container:{},
     products:{},
@@ -301,6 +294,11 @@ function Order(props) {
 
     const isDesktop = useMediaQuery({ minWidth: 992 })
 
+    const MobileOrTablet = ({ children }) => {
+        const isMobileOrTablet = useMediaQuery({ maxWidth: 991 })
+        return isMobileOrTablet ? children : null
+    }
+
     if(products.length > 0){
         products.map((i) => {
             totalPrice = totalPrice + parseFloat(i.price.replace('€',''));
@@ -355,6 +353,7 @@ function Order(props) {
 
     function handleChange(value) {
         setVisibleTab(false);
+        setLoaded(true);
         if(value !== "background" && value !== "order"){
             setVisibleComponent(false);
             setLoaded(true);
@@ -365,6 +364,7 @@ function Order(props) {
     }
 
     function changeLanguage(){
+        setLoaded(true);
         if(language === 2){
             setLanguage(0);
         }else{
@@ -392,21 +392,18 @@ function Order(props) {
                         alt="Le Petite Gastronimique"/>
                 </motion.div>            
                     
-                <AnimatePresence>
-                {visibleComponent && products.length > 0 && (
-                            <motion.div className={classes.products_container}>
-                            <motion.div variants={animations} transition={loaded ? {duration: 1.2} : initialTransition}
-                            initial="down_initial_component" exit="down_initial_component"
-                            animate="animated_component" className={classes.products}>
-                                {listItems.length > 0 && (listItems.map((i, id) => {
-                                    return <CardProduct onChange={handleCardProduct} key={id} title={i.title} 
-                                            price={i.price} description={i.description} thumb={i.thumb} language={language}
-                                            image={i.image} id={id} quantity={i.quantity}/>
-                                }))}
-                            </motion.div>
-                            </motion.div>
-                        )}
-                </AnimatePresence>
+              
+                <motion.div className={classes.products_container}>
+                    <motion.div variants={animations} transition={loaded ? {duration: 1.2} : initialTransition}
+                    initial={{opacity: 0}} 
+                    animate={{opacity: visibleComponent && products.length > 0 ? 1 : 0}} className={classes.products}>
+                        {listItems.length > 0 && (listItems.map((i, id) => {
+                            return <CardProduct onChange={handleCardProduct} key={id} title={i.title} 
+                                    price={i.price} description={i.description} thumb={i.thumb} language={language}
+                                    image={i.image} id={id} quantity={i.quantity}/>
+                        }))}
+                    </motion.div>
+                </motion.div>
 
                 <motion.div variants={animations} transition={{duration: .8}}
                     initial="top_initial_component"
@@ -428,6 +425,8 @@ function Order(props) {
                             <ConfirmButton text={TextOrderButton[language].next + " • " + totalPrice.toFixed(2) + "€"}
                             onClick={() => handleOrder()}  />
                         </motion.div>)}
+
+                    
                 <AnimatePresence>
                     {visibleComponent && products.length < 1 && (
                         <motion.div className={classes.animation_container} variants={animations} 
@@ -441,30 +440,7 @@ function Order(props) {
                             className={classes.animation_text}>{TextOrderNoProducts[language].text}</motion.span>                    
                         </motion.div>)}
                 </AnimatePresence>
-                <motion.div className={classes.menu_button} variants={animations}  
-                initial={loaded ? "" : "left_initial_component"} animate="animated_component"
-                transition={buttonTransition}>
-                    <motion.div layoutId="menu_button">
-                        <DarkIconButton onClick={(e) => handleVisibleTab(e)} 
-                        size={"12vw"} icon={MenuIcon}/>
-                    </motion.div> 
-                </motion.div>
-                    
-                <motion.div className={classes.language_button} variants={animations}  
-                initial={loaded ? "" : "right_initial_component"} animate={"animated_component"}
-                transition={buttonTransition}>
-                    <motion.div layoutId="language_button">
-                        <DarkIconButton onClick={(e) => changeLanguage(e)}
-                        size={"12vw"} 
-                        icon={LanguageIcon[language]}/>
-                    </motion.div>
-                </motion.div>
                 
-                <AnimatePresence>
-                    {order && (
-                        <CardOrder order={true} item={listItems} onChange={handleCard}/>  )}
-                </AnimatePresence>
-                <Tab isVisible={visibleTab} onChange={handleChange}/>
                 <motion.div className={classes.menu_layout}>
                     {products.length > 0 && (
                         <>
@@ -475,13 +451,43 @@ function Order(props) {
                         </>
                     )}
                 </motion.div>
-                <Tab isVisible={isDesktop ? true : visibleTab} static={loaded ? true : false} onChange={handleChange}/>   
+                
 
             </div>
-            <AnimatePresence>
-                    {card && <CardFeatures order={true} item={item} onChange={handleCard}/>}
+           
 
-                </AnimatePresence>
+            <motion.div className={classes.menu_button} variants={animations}  
+                initial={loaded ? "" : "left_initial_component"} animate="animated_component"
+                transition={buttonTransition}>
+                    <MobileOrTablet>
+                        <motion.div layoutId="menu_button">
+                            <DarkIconButton onClick={(e) => handleVisibleTab(e)} 
+                            size={"12vw"} icon={MenuIcon}/>
+                        </motion.div> 
+                    </MobileOrTablet>
+            </motion.div>
+            
+           
+                    
+            <motion.div className={classes.language_button} variants={animations}  
+            initial={loaded ? "" : "right_initial_component"} animate={"animated_component"}
+            transition={buttonTransition}>
+                <motion.div layoutId="language_button">
+                    <DarkIconButton onClick={(e) => changeLanguage(e)}
+                    size={"12vw"} icon={LanguageIcon[language]}/>
+                </motion.div>
+            </motion.div>
+
+            <Tab isVisible={isDesktop ? true : visibleTab} static={loaded ? true : false} onChange={handleChange}/>   
+
+            <AnimatePresence>
+                {card && <CardFeatures order={true} item={item} onChange={handleCard}/>}
+            </AnimatePresence>
+
+            <AnimatePresence>
+                {order && ( <CardOrder order={true} item={listItems} onChange={handleCard}/>  )}
+            </AnimatePresence>
+            
         </Div100vh>
     )
 }

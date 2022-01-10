@@ -18,7 +18,7 @@ const styles = makeStyles(theme => ({
         width:  ({open}) => open ? "100%" : "null",
         backgroundColor: theme.colors.primary.rich_black,
         [theme.breakpoints.up('lg')]: {
-            width:  ({open}) => open ? "80%" : "null",
+            width:  ({open}) => open ? "75%" : "null",
         },
     },
     header:  ({            
@@ -41,7 +41,7 @@ const styles = makeStyles(theme => ({
         },
         [theme.breakpoints.up('lg')]: {
             height: "7vh", 
-            width: "80vw",
+            width: "75vw",
         },
     }),
     text_header:{
@@ -90,22 +90,14 @@ const styles = makeStyles(theme => ({
         width: "100vw",
         paddingBottom: ({padding}) => padding,
         flexDirection: "column",
-        justifyContent: "flex-end",
+        justifyContent: "space-evenly",
         alignItems: "center",
         alignContent: "center",
-        [theme.breakpoints.down('lg')]: {
-            gap: "5vh",
-        },
-        [theme.breakpoints.down('sm')]: {
-            gap: "3vh",
-        },
         [theme.breakpoints.up('lg')]: {
-            gap: "9vh",
-            width: "80vw",
+            width: "75vw",
             flexWrap: "wrap",
             flexDirection: "row",
-            justifyContent: "center",
-            marginTop: ({open}) => open ? "15vh" : "4vh",
+            marginTop: ({open}) => open ? "12vh" : "4vh",
         },
     },
     background: {

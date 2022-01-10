@@ -28,12 +28,10 @@ const TabStyles = makeStyles(theme => ({
         width: "inherit",
         [theme.breakpoints.up('lg')]: {
             height: "100%",
-            width: "20%",        
+            width: "25%",        
             position: "fixed",
             left: 0,
             top: 0
-
-            
         },
         '& $shadow_background':{
             position: "absolute",
@@ -47,7 +45,7 @@ const TabStyles = makeStyles(theme => ({
         '& $tab':{
             position: "relative",
             height: "100%",
-            width: "45%",
+            width: "50%",
             [theme.breakpoints.up('lg')]: {
                 width: "100%",
             },
@@ -72,46 +70,64 @@ const TabStyles = makeStyles(theme => ({
                 '& $buttons_section':{
                     display: "flex",
                     flexDirection: "column",
-                    paddingTop: "2vh",
+                    paddingTop: "4vh",
                     paddingBottom: "2vh",
-                    margin: "7%",
-                    gap: "2vh",
+                    marginLeft: "7%",
+                    marginRight: "7%",
                     width: "auto",
+                    justifyContent: "space-between",
+                    alignContent: "center",
+                    alignItems: "center",
+                    [theme.breakpoints.down('lg')]: {
+                        height: "25%",
+                    },
+                    [theme.breakpoints.down('sm')]: {
+                        height: "27%",
+                    },
+                    [theme.breakpoints.up('lg')]: {
+                        height: "23%",
+                        marginLeft: "12%",
+                        marginRight: "12%",
+                    },
                 },
                 '& $info_section':{
                     display: "flex",
                     paddingBottom: "2vh",  
-                    justifyContent: "center",
+                    justifyContent: "space-between",
                     flexDirection: "column",  
                     margin: "7%", 
-                    gap: "2vh",
-                    width: "80%",
+                    width: "auto",
+                    height: "25%",
+                    [theme.breakpoints.down('lg')]: {
+                        height: "22%",
+                    },
+                    [theme.breakpoints.down('sm')]: {
+                        height: "25%",
+                    },
+                    [theme.breakpoints.up('lg')]: {
+                        height: "20%",
+                    },
                     '& $info_item':{
                         display: "flex",
                         alignItems: "center",
                         alignContent: "center", 
+                        justifyContent: "flex-start",
                         fontFamily: "Ruluko",
                         width: "100%",
                         color: theme.colors.primary.alabaster,
-                        [theme.breakpoints.down('lg')]: {
-                            gap: "1.5vw",     
-                        },
-                        [theme.breakpoints.down('sm')]: {
-                            gap: "1.5vw",     
-                        },
-                        [theme.breakpoints.up('lg')]: {
-                            gap: "1vh",     
-                        },
                         '& img':{
                             width: "auto", 
                             [theme.breakpoints.down('lg')]: {
                                 height: "5vw",  
+                                paddingRight: "3vw"
                             },
                             [theme.breakpoints.down('sm')]: {
-                                height: "5vw",  
+                                height: "5vw", 
+                                paddingRight: "2vw" 
                             },
                             [theme.breakpoints.up('lg')]: {
                                 height: "4vh",
+                                paddingRight: "1vh"
                             },
                         },
                         '& span':{
@@ -120,7 +136,7 @@ const TabStyles = makeStyles(theme => ({
                                 fontSize: "3vw",
                             },
                             [theme.breakpoints.down('sm')]: {
-                                fontSize: "3.2vw",
+                                fontSize: "3.9vw",
                             },
                             [theme.breakpoints.up('lg')]: {
                                 fontSize: "2.5vh",
@@ -135,7 +151,16 @@ const TabStyles = makeStyles(theme => ({
                     width: "100%",
                     flexDirection: "column",
                     alignItems: "center",
-                    gap: "2.5vh",
+                    justifyContent: "space-between",
+                    [theme.breakpoints.down('lg')]: {
+                        height: "8vw",
+                    },
+                    [theme.breakpoints.down('sm')]: {
+                        height: "10vw",
+                    },
+                    [theme.breakpoints.up('lg')]: {
+                        height: "6vh",
+                    },
                     '& $line': {
                         border: "0",
                         backgroundColor: theme.colors.primary.alabaster,
