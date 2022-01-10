@@ -145,7 +145,7 @@ const styles = makeStyles(theme => ({
             [theme.breakpoints.up('lg')]: {
                 top: "3vh",
                 left: "3vh",
-                paddingLeft: "25%"
+                paddingLeft: "25vw"
             },
         },
         '& $categories_section': {
