@@ -153,11 +153,11 @@ const styles = makeStyles(theme => ({
             position: "relative",
             height: "96%",
             [theme.breakpoints.down('lg')]: {
-                width: "30vw",
+                width: "38vw",
 
             },
             [theme.breakpoints.down('sm')]: {
-                width: "45vw",
+                width: "50vw",
             },
             [theme.breakpoints.up('lg')]: {
                 width: "25vh",
