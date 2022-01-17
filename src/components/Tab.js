@@ -301,7 +301,7 @@ function tab(props) {
                                     </div>
                                     <div className={classes.info_item}>
                                         <img src={MailIcon} alt="Mail Restaurant"/>
-                                        <span>abdcasd@gmail.com</span>
+                                        <span>support@domory.co</span>
                                     </div>
                                     <div className={classes.info_item}>
                                         <img src={PhoneIcon} alt="Phone Number Restaurant"/>
@@ -347,7 +347,7 @@ function tab(props) {
                             </div>
                             <div className={classes.info_item}>
                                 <img src={MailIcon} alt="Mail Restaurant"/>
-                                <span>abdcasd@gmail.com</span>
+                                <span>support@domory.co</span>
                             </div>
                             <div className={classes.info_item}>
                                 <img src={PhoneIcon} alt="Phone Number Restaurant"/>
