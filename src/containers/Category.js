@@ -612,6 +612,9 @@ function Category(props) {
                 case "order":
                     navigate('../' + "order", { replace: true });
                     break; 
+                case "about":
+                    navigate('../' + "about", { replace: true });
+                    break; 
                 case "open 4":
                     setScreen(1);
                     break;
@@ -630,6 +633,7 @@ function Category(props) {
                 default:
                     break;
             }
+            console.log(value);
         }else{
             setItem(value);
             setCard(true);
