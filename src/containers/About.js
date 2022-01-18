@@ -336,7 +336,7 @@ function About() {
                             animate={{opacity: visibleComponent ? 1 : 0}}
                             transition={{duration: .8, delay: visibleComponent && changeText ? 1.9 : .3}}>{AboutDescription[language].description}</motion.span>
                     </div>
-                    <div className={classes.flyer} onClick={() => {window.location.href = `mailto:valram@domory.co`}}>
+                    <div className={classes.flyer} onClick={() => {window.location.href = `mailto:support@domory.co`}}>
                         <motion.img className={classes.img} variants={animations} key={language} initial={{opacity: 0}} 
                             animate={{opacity: visibleComponent ? 1 : 0}} src={AboutDescription[language].flyer}
                             transition={{duration: .8, delay: visibleComponent && changeText ? 1.9 : .3}}/>
