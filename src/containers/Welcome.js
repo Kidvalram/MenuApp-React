@@ -156,14 +156,10 @@ function Welcome(props) {
 
     async function sequence() {
         // Shrink horizontally
-        await animation.start({
-            y: "0%",
-            transition: { duration: 2 },
-        })
-        // Grow back
+
         animation.start({
             opacity: 0,
-            transition: { delay: 2, duration: 2 },
+            transition: { delay: 1, duration: 2 },
         })
     }
 
@@ -178,7 +174,7 @@ function Welcome(props) {
 
             setTimeout(() => {
                 handleChange(true);
-            }, 7000); 
+            }, 3000); 
         
     }, [])
 
@@ -190,18 +186,18 @@ function Welcome(props) {
             <div className={classes.video_container}>
                 <div className={classes.background}>
                     <motion.div layoutId="primary_background" initial={{opacity: 0}}
-                    animate={{opacity: screenLogo ? 1 : 0}} transition={{delay: 3}} 
+                    animate={{opacity: screenLogo ? 1 : 0}} transition={{delay: 0}} 
                     className={classes.primary_background}/>
-                    <motion.div initial="primary_background_initial_video"
+                    <motion.div 
                         animate={animation} variants={animations} className={classes.primary_background}>
                             <img src={PrimaryBackground} style={{height: "100%", width: "100%", objectFit:"cover"}}/>
                     </motion.div>
                 </div>
                 <div className={classes.background}>
                     <motion.div layoutId="secondary_background"initial={{opacity: 0}}
-                    animate={{opacity: screenLogo ? 1 : 0}} transition={{delay: 3}} 
+                    animate={{opacity: screenLogo ? 1 : 0}} transition={{delay: 0}} 
                     className={classes.secondary_background}/>
-                    <motion.div initial="secondary_background_initial_video"
+                    <motion.div 
                         animate={animation} variants={animations} className={classes.secondary_background}>
                             <img src={SecundaryBackground} style={{height: "100%", width: "100%", objectFit:"cover"}}/>
                     </motion.div>
@@ -209,19 +205,15 @@ function Welcome(props) {
             </div>
 
             <AnimatePresence>
-                {screenLogo && 
-                (
-                    <motion.div initial="logo_initial" className={classes.logo_container}
-                    animate="logo_animated" variants={animations} transition={logoTransition} >
-                        <motion.div layoutId="logo" style={{height: "40%", width: "auto"}}>
-                            <img height="100%" 
-                            width="auto" src={Logo} alt="Le Petite Gastronimique"/>
-                        </motion.div>
+                <div className={classes.logo_container}>
+                    <motion.div layoutId="logo" style={{height: "40%", width: "auto"}}>
+                        <img height="100%" 
+                        width="auto" src={Logo} alt="Le Petite Gastronimique"/>
                     </motion.div>
-               )}   
+                </div>
             </AnimatePresence>
 
-            <motion.div className={classes.domory_logo_container} initial={{opacity: 0}}
+            <motion.div className={classes.domory_logo_container}
                 animate={{opacity: screenLogo ? 1 : 0}} transition={{duration: 2}} >
                     <motion.img  className={classes.img} initial={{opacity: 1}} 
                     animate={animation} variants={animations} transition={{delay: 1}} 
