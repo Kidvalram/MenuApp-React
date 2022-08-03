@@ -18,6 +18,10 @@ Conception faite en Figma
 - React 
 - Material-UI
 - Framer-motion
+- Figma
+- Wireframes
+- Prototype
+- Mockup
 
 ## Links
 
