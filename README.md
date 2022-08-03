@@ -26,7 +26,7 @@ Conception faite en Figma
 ## Links
 
 - Website : [https://menuapp-domory.vercel.app/menu](https://menuapp-domory.vercel.app/menu)
-- Conception sur Figma : [Design](https://www.figma.com/file/nvZDFgrmdtCtLIY9V202Xw/Modern-Bar-App?node-id=402%3A2444)
+- Conception sur Figma : [Design](https://www.figma.com/file/nvZDFgrmdtCtLIY9V202Xw/Modern-Bar-App?node-id=405%3A2452)
 - Simulation sur Figma : [Live](https://www.figma.com/proto/nvZDFgrmdtCtLIY9V202Xw/Modern-Bar-App?page-id=569%3A4177&node-id=569%3A4189&viewport=63%2C467%2C0.1&scaling=scale-down&starting-point-node-id=569%3A4182)
 
 
