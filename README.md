@@ -1,5 +1,7 @@
 # Menu en ligne pour les restaurants
 
+Site développé avec Javascript et React, Material UI est utilisé pour son interface en plus de Figma pour son design.
+
 <img src="https://www.kidvalram.com/static/media/menu_mockup_2_lg.0b4d05e745e477c3b53f.jpg" width="50%" height="50%">
 
 ## Description
