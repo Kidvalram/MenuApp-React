@@ -14,6 +14,11 @@ Un menu en ligne pour que les clients voient les produits offerts par le restaur
 
 Conception faite en Figma
 
+## Topics
+- React 
+- Material-UI
+- Framer-motion
+
 ## Links
 
 - Website : [https://menuapp-domory.vercel.app/menu](https://menuapp-domory.vercel.app/menu)
